@@ -42,6 +42,11 @@ namespace Payments.E2E.Tests
             }
         }
 
+        public void Screenshot()
+        {
+            _extentTest.Info("Screenshot: ", CaptureScreenShot());
+        }
+
         public void ToExtentReportDependsOnTestStatus()
         {
             var testStatus = TestContext.CurrentContext.Result.Outcome.Status;
