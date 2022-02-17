@@ -50,6 +50,7 @@ namespace Payments.E2E.Tests
         public void ToExtentReportDependsOnTestStatus()
         {
             var testStatus = TestContext.CurrentContext.Result.Outcome.Status;
+            var stackTrace = TestContext.CurrentContext.Result.StackTrace;
             var errorMessage = TestContext.CurrentContext.Result.Message;
             var testCategories = TestContext.CurrentContext.Test.Properties["Category"];
 
@@ -64,6 +65,7 @@ namespace Payments.E2E.Tests
                 case TestStatus.Failed:
                     _extentTest.Fail("Test failed", CaptureScreenShot());
                     _extentTest.Error($"Error message: {errorMessage}");
+                    _extentTest.Error($"StackTrace: {stackTrace}");
                     break;
                 case TestStatus.Skipped:
                     _extentTest.Skip($"Test is skipped. Reason: {errorMessage}");
